@@ -1,0 +1,9 @@
+CONFIG set sysvshm=new
+RESTART
+ARG version=15
+PKG postgresql${version}-server postgresql${version}-contrib
+SYSRC postgresql_enable=YES
+CMD if [ ! -e /var/db/postgres/data${version} ];then service postgresql initdb; service postgresql start; fi
+# Allows access from all interfaces
+CMD sed -i '' -e 's/#listen_addresses = 'localhost'/listen_addresses = '*'/g' /var/db/postgres/data${version}/postgresql.conf
+SERVICE postgresql restart

@@ -1,0 +1,18 @@
+PKG git-lite python311 py311-pip py311-num2words py311-ldap3 py311-postgresql wkhtmltopdf rust
+# Python Odoo dependencies
+PKG py311-Babel py311-decorator py311-docutils py311-gevent py311-idna py311-Jinja2 py311-lxml py311-libsass py311-mock py311-ofxparse py311-passlib py311-pillow py311-polib py311-psutil py311-psycopg2 py311-pydot py311-pypdf2 py311-pyserial py311-python-dateutil py311-stdnum py311-pytz py311-pyusb py311-qrcode py311-reportlab py311-requests py311-zeep py311-vobject py311-werkzeug py311-XlsxWriter py311-xlwt py311-chardet py311-freezegun
+ARG version=18.0
+ARG edition=community
+ARG db_host=False
+ARG db_port=5432
+ARG db_user=odoo
+ARG db_password=False
+OVERLAY usr
+OVERLAY var
+RENDER usr/local/etc/odoo.conf
+CMD chmod +x /usr/local/etc/rc.d/odoo
+SYSRC odoo_enable=YES
+OVERLAY root
+RENDER root/bootstrap_odoo.sh
+CMD chmod +x /root/bootstrap_odoo.sh
+CMD /root/bootstrap_odoo.sh
