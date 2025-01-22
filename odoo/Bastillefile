@@ -8,7 +8,6 @@ ARG db_port=5432
 ARG db_user=odoo
 ARG db_password=False
 OVERLAY usr
-OVERLAY var
 RENDER usr/local/etc/odoo.conf
 CMD chmod +x /usr/local/etc/rc.d/odoo
 SYSRC odoo_enable=YES
